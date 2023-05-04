@@ -13,7 +13,7 @@ dotenv.config()
 const app = express()
 
 app.use(cookieParser())
-app.use(cors({origin:true, credentials: true}));
+app.use(cors({origin:"https://randomvideos.onrender.com", credentials: true}));
 
 
 
