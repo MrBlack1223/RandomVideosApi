@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import jwt from'jsonwebtoken'
 
 export const verify = (req,res,next)=>{
-    const accesToken = req.cookies.acces_token
+    const accesToken = req.cookies.token
     if(!accesToken) return next(createError(401,"No token"))
 
     jwt.verify(accesToken, process.env.JWT, (error,user)=>{
@@ -23,7 +23,7 @@ export const login = async(req,res,next) => {
 
     const {password, ...data} = user._doc
     const token = jwt.sign({ id: user._id }, process.env.JWT)
-    res.cookie('acces_token',token,{
+    res.cookie('token',token,{
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
         sameSite: 'none'
@@ -31,7 +31,7 @@ export const login = async(req,res,next) => {
     .json(data)
 }
 export const logout = async(req,res,next) => {
-    res.clearCookie('acces_token',{
+    res.clearCookie('token',{
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
         sameSite: 'none'}).send("CookieCleared")
