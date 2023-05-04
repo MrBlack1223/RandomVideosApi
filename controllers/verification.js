@@ -23,7 +23,7 @@ export const login = async(req,res,next) => {
 
     const {password, ...data} = user._doc
     const token = jwt.sign({ id: user._id }, process.env.JWT)
-
+    console.log(token)
     res.cookie('acces_token',token,{
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
