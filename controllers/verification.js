@@ -27,7 +27,6 @@ export const login = async(req,res,next) => {
     res.cookie('acces_token',token,{
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
-        httpOnly: true,
         sameSite: 'none'
     }).status(200)
     .json(data)
@@ -36,7 +35,6 @@ export const logout = async(req,res,next) => {
     res.clearCookie('acces_token',{
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
-        httpOnly: true,
         sameSite: 'none'})
     res.send("CookieCleared")
 }
