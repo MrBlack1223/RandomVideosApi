@@ -84,7 +84,8 @@ export const likeVideo = async(req,res,next)=>{
         await Video.findByIdAndUpdate(req.params.videoID,{
             $addToSet: {likes: req.user.id},
             $pull: {dislikes: req.user.id}
-        }) 
+        })
+        console.log(req.user.id) 
         res.send("Liked")
     }catch(e){
         next(e)
@@ -96,6 +97,7 @@ export const dislikeVideo = async(req,res,next)=>{
             $addToSet: {dislikes: req.user.id},
             $pull: {likes: req.user.id}
         }) 
+        console.log(req.user.id) 
         res.send("Unliked")
     }catch(e){
         next(e)
