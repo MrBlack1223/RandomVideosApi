@@ -24,10 +24,19 @@ export const login = async(req,res,next) => {
     const {password, ...data} = user._doc
     const token = jwt.sign({ id: user._id }, process.env.JWT)
 
-    res.cookie('acces_token',token,{httpOnly: true}).status(200)
+    res.cookie('acces_token',token,{
+        maxAge: 24 * 60 * 60 * 100,
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none'
+    }).status(200)
     .json(data)
 }
 export const logout = async(req,res,next) => {
-    res.clearCookie('acces_token',{domain: 'localhost', path: '/'})
+    res.clearCookie('acces_token',{
+        maxAge: 24 * 60 * 60 * 100,
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none'})
     res.send("CookieCleared")
 }
