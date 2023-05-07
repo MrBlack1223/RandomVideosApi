@@ -29,7 +29,7 @@ export const login = async(req,res,next) => {
         httpOnly: true,
         sameSite: 'none',
         path: '/',
-        domain: '.onrender.com'
+        domain: 'random-videos-api.onrender.com'
     }).status(200)
     .json(data)
 }
@@ -40,6 +40,6 @@ export const logout = async(req,res,next) => {
         httpOnly: true,
         sameSite: 'none',
         path: '/',
-        domain: '.onrender.com'
+        domain: 'random-videos-api.onrender.com'
     }).status(204)
 }
