@@ -27,7 +27,8 @@ export const login = async(req,res,next) => {
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
         httpOnly: true,
-        sameSite: 'none'
+        sameSite: 'none',
+        domain: '.onrender.com'
     }).status(200)
     .json(data)
 }
@@ -36,6 +37,7 @@ export const logout = async(req,res,next) => {
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
         httpOnly: true,
-        sameSite: 'none'
+        sameSite: 'none',
+        domain: '.onrender.com'
     }).status(204)
 }
