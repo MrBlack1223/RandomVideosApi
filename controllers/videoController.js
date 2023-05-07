@@ -14,7 +14,7 @@ export const showVideoByID = async(req,res,next)=>{
 }
 export const showRandomVideos = async(req,res,next)=>{
     try{
-        const videos = await Video.aggregate([{$sample:{size:40}}])
+        const videos = await Video.aggregate([{$sample:{size:30}}])
         res.send(videos)
     }catch(e){
         next(e)
@@ -22,7 +22,7 @@ export const showRandomVideos = async(req,res,next)=>{
 }
 export const showTrendingVideos = async(req,res,next)=>{
     try{
-        const videos = await Video.find({}).sort({views: -1}).limit(3)
+        const videos = await Video.find({}).sort({views: -1}).limit(12)
         res.send(videos)
     }catch(e){
         next(e)
@@ -40,7 +40,7 @@ export const showVideoByTag = async(req,res,next)=>{
 export const showSearchedVideo = async(req,res,next)=>{
     const search = req.query.search
     try{
-        const videos = await Video.find({title: {$regex : search, $options: "i"}}).limit(40)
+        const videos = await Video.find({title: {$regex : search, $options: "i"}}).limit(30)
         res.send(videos)
     }catch(e){
         next(e)
@@ -49,7 +49,6 @@ export const showSearchedVideo = async(req,res,next)=>{
 export const showSubscribedVideos = async(req,res,next)=>{
     try{
         const user = await User.findById(req.user.id)
-        console.log(user.subscribed)
         const videos = await Promise.all(
             user.subscribed.map((userID)=>{
                 return Video.find({authorID: userID})
