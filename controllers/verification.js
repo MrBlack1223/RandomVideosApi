@@ -35,5 +35,5 @@ export const logout = async(req,res,next) => {
         maxAge: 24 * 60 * 60 * 100,
         secure: true,
         sameSite: 'none',
-    }).status(204)
+    }).sendStatus(204)
 }
