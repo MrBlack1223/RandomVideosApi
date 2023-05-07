@@ -28,8 +28,6 @@ export const login = async(req,res,next) => {
         secure: true,
         httpOnly: true,
         sameSite: 'none',
-        path: '/',
-        domain: 'random-videos-api.onrender.com'
     }).status(200)
     .json(data)
 }
@@ -39,7 +37,5 @@ export const logout = async(req,res,next) => {
         secure: true,
         httpOnly: true,
         sameSite: 'none',
-        path: '/',
-        domain: 'random-videos-api.onrender.com'
     }).status(204)
 }
