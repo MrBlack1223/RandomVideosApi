@@ -43,8 +43,8 @@ export const updateUser = async(req,res) =>{
     if(req.user.id === req.params.userID){
         try{
             const user = await User.findById(req.params.userID)
-            await user.updateOne(req.body)
-            res.status(200).json(user)
+            const updatedUser = await user.updateOne(req.body,{new:true})
+            res.status(200).json(updatedUser)
         }catch(error){
             res.send(error)
         }
