@@ -42,9 +42,8 @@ export const showUserDetails = async(req,res) =>{
 export const updateUser = async(req,res) =>{
     if(req.user.id === req.params.userID){
         try{
-            const user = await User.findById(req.params.userID)
-            const updatedUser = await user.updateOne(req.body,{new:true})
-            res.status(200).json(updatedUser)
+            const user = await User.findByIdAndUpdate(req.params.userID,req.body,{new:true})
+            res.status(200).json(user)
         }catch(error){
             res.send(error)
         }
